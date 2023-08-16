@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gerador de Senha</title>
+</head>
+
+<body>
+  <h1>Gerador de senha</h1>
+
+  <p>Utilize o nosso gerador online para criar uma senha forte e segura</p>
+
+  <input type="text" name="password" id="password" />
+
+  <input type="range" name="password-length" id="password-length" value="16" min="4" max="64" />
+
+  <button id="copy">Copiar senha</button>
+
+  <script>
+    // recuperando o elemento do HTML
+    const inputEl = document.querySelector("#password");
+
+    // criando variavel no escopo global
+    let passwordLength = 16
+
+    // função que gera a senha
+    function generatePassword() {
+      // conjunto de carcateres para criação da senha
+      const chars =
+        "abcdefghjklmnpqrstuvwyzABCDEFGHJKLMNPQRSTUVWXYZ123456789?!@&*()[]";
+      // variavel para armazenar a senha
+      let password = "";
+      // gerador da senha
+      for (let i = 0; i < passwordLength; i++) {
+        const randomNumber = Math.floor(Math.random() * chars.length);
+        password += chars.substring(randomNumber, randomNumber + 1);
+      }
+
+      // atribuindo valor gerado para o elemento
+      inputEl.value = password;
+      // console.log(password);
+    }
+
+    // função copy : API do navegador para copiar valores
+    function copy() {
+      navigator.clipboard.writeText(inputEl.value)
+    }
+
+    // recuperando o elemento range
+    const passwordLengthEl = document.querySelector("#password-length")
+    // função para capturar o value do range
+    passwordLengthEl.addEventListener("input", function () {
+      // variavel global
+      passwordLength = passwordLengthEl.value
+      // console.log(passwordLength)
+      // chama a função sempre que o range é alterado
+      generatePassword()
+    })
+
+    // requperando o elemento
+    const copyButtonEl = document.querySelector("#copy")
+    // adiciona um evento ao botão
+    copyButtonEl.addEventListener('click', copy) // função criada anteriormente
+
+    // chamando a função que gera a senha
+    generatePassword();
+  </script>
+</body>
+
+</html>
