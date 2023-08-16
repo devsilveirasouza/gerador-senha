@@ -39,10 +39,15 @@ passwordLengthEl.addEventListener("input", function () {
     generatePassword()
 })
 
-// requperando o elemento
-const copyButtonEl = document.querySelector("#copy")
-// adiciona um evento ao botão
-copyButtonEl.addEventListener('click', copy) // função criada anteriormente
+// *** requperando o elemento
+// const copyButtonEl = document.querySelector("#copy")
+// *** adiciona um evento ao botão
+// copyButtonEl.addEventListener('click', copy) // função criada anteriormente
+
+// Esta estrutura substitui a anterior //
+document.querySelector("#copy-1").addEventListener("click", copy)
+document.querySelector("#copy-2").addEventListener("click", copy)
 
 // chamando a função que gera a senha
 generatePassword();
+
